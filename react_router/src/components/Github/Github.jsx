@@ -1,28 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 const Github = () => {
-    const [username, setUsername] = useState("");
-    const [data, setData] = useState({});
 
-    useEffect(() => {
-        if (username) {
-            fetch(`https://api.github.com/users/${username}`)
-                .then(response => response.json())
-                .then(data => setData(data));
-        }
-    }, [username]);
+
+    // const [username, setUsername] = useState("");
+    // const [data, setData] = useState({});
+
+    // useEffect(() => {
+    //     if (username) {
+    //         fetch(`https://api.github.com/users/${username}`)
+    //             .then(response => response.json())
+    //             .then(data => setData(data));
+    //     }
+    // }, [username]);
+
+    const data = useLoaderData();
 
     return (
         <>
             <div className='bg-gray-500 p-8 text-center text-3xl'>
-                <div>
-                    <input
-                        placeholder='Enter Username'
-                        value={username}
-                        onChange={(event) => setUsername(event.target.value)}
-                    />
-                    <h2>{username}</h2>
-                </div>
+
 
                 {data.followers !== undefined && (
                     <>
@@ -38,3 +35,12 @@ const Github = () => {
 }
 
 export default Github;
+
+
+
+export const githubInfoLoad = async () => {
+
+    const response = await fetch(`https://api.github.com/users/amleshwar-p`)
+    return response.json()
+
+}
