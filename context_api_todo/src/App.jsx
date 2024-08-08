@@ -30,10 +30,10 @@ function App() {
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem("todos"));
     if (storedTodos) {
-        setTodos(storedTodos);
+      setTodos(storedTodos);
     }
     console.log('Stored todos from localStorage:', storedTodos);
-}, []);
+  }, []);
 
   useEffect(() => {
     console.log('Saving todos to localStorage:', todos);
